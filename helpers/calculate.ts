@@ -11,6 +11,7 @@ export const calculate = ({ operation, operand1, operand2 }: CalcProps): string 
     const operand21 = Number(operand2);
     
     let result;
+
     switch (operation) {
     case '+':
         result = operand11 + operand21 < max || operand11 + operand21 > min ? operand11 + operand21 : '0';
@@ -28,7 +29,7 @@ export const calculate = ({ operation, operand1, operand2 }: CalcProps): string 
         result = operand11 / 100 * operand21;
         return String(result)
     default:
-        return '0';
+        return '';
     }
 }
 
@@ -110,13 +111,23 @@ export const operate = (value: string, setState: State) => {
             }
         });
         break;
+    case '.':
+        setState((prev) => {
+            return {
+                ...prev,
+                operand1: !prev.value ? '0.' :  prev.operation || prev.operand1.includes('.') ? prev.operand1 : prev.operand1 + '.',
+                operand2: prev.operation && !prev.operand2 ? '0.' :  prev.operation || prev.operand2.includes('.') ? prev.operand2 + '.' : prev.operand2,
+                value: !prev.value ? '0.' : !prev.value.includes('.') ? prev.value + '.' : !prev.operand2 ? '0.' : prev.value,
+            }
+        });
+        break;
     default:
         setState((prev) => {
             return {
                 ...prev,
-                operand1: prev.operation ? prev.operand1 : prev.value + value,
-                operand2: prev.operation ? prev.operand2 + value : prev.operand2,
-                value: prev.operation ? prev.operand2 + value : prev.operand1 + value,
+                operand1: prev.operation ? prev.operand1 : String(parseFloat(prev.value + value)),
+                operand2: prev.operation ? String(parseFloat(prev.operand2 + value)) : prev.operand2,
+                value: prev.operation ? String(parseFloat(prev.operand2 + value)) : String(parseFloat(prev.operand1 + value)),
             }
         });
     }

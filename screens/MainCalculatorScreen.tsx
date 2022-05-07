@@ -8,16 +8,16 @@ import { operate } from '../helpers/calculate'
 
 export const MainCalculatorScreen: FC = () => {
     const [state, setState] = useState({
-        operand1: '0',
-        operand2: '0',
+        operand1: '',
+        operand2: '',
         operation: '',
-        value: '0',
+        value: '',
     });
 
     const handleState = useCallback(
         (value: string) => {
             operate(value, setState)
-        }, [state],
+        }, [],
     )
     console.log(state);
     
