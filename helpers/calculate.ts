@@ -15,19 +15,19 @@ export const calculate = ({ operation, operand1, operand2 }: CalcProps): string 
     switch (operation) {
     case '+':
         result = operand11 + operand21 < max || operand11 + operand21 > min ? operand11 + operand21 : '0';
-        return String(result);
+        return String(result).slice(0, 10);
     case '-':
         result = operand11 - operand21 < max || operand11 - operand21 > min ? operand11 - operand21 : '0';
-        return String(result);
+        return String(result).slice(0, 10);
     case 'x':
         result = operand11 * operand21 < max || operand11 * operand21 > min ? operand11 * operand21 : '0';
-        return String(result);
+        return String(result).slice(0, 10);
     case '/':
         result = Number.isNaN(operand11 / operand21) ? '0' : operand11 / operand21;
-        return String(result);
+        return String(result).slice(0, 10);
     case '%':
         result = operand11 / 100 * operand21;
-        return String(result)
+        return String(result).slice(0, 10)
     default:
         return '';
     }
@@ -123,11 +123,13 @@ export const operate = (value: string, setState: State) => {
         break;
     default:
         setState((prev) => {
+            const limit = prev.value.includes('.') ? 9 : 8;
+            
             return {
                 ...prev,
                 operand1: prev.operation ? prev.operand1 : String(parseFloat(prev.value + value)),
                 operand2: prev.operation ? String(parseFloat(prev.operand2 + value)) : prev.operand2,
-                value: prev.operation ? String(parseFloat(prev.operand2 + value)) : String(parseFloat(prev.operand1 + value)),
+                value: prev.value.length > limit ? prev.value : prev.operation ? String(parseFloat(prev.operand2 + value)) : String(parseFloat(prev.operand1 + value)),
             }
         });
     }

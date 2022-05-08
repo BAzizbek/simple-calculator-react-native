@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         marginHorizontal: '1%',
         right: 0,
         bottom: 5,
-        fontSize: 70,
+        fontSize: 60,
         color: '#fff',
     }
 })

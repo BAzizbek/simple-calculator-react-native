@@ -17,7 +17,7 @@ export const MainCalculatorScreen: FC = () => {
     const handleState = useCallback(
         (value: string) => {
             operate(value, setState)
-        }, [],
+        }, [state.value],
     )
     console.log(state);
     
