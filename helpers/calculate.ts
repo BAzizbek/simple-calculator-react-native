@@ -1,3 +1,5 @@
+import { handleTyping } from "./handleTyping";
+
 type CalcProps = {
     operation: string;
     operand1: string;
@@ -122,15 +124,6 @@ export const operate = (value: string, setState: State) => {
         });
         break;
     default:
-        setState((prev) => {
-            const limit = prev.value.includes('.') ? 9 : 8;
-            
-            return {
-                ...prev,
-                operand1: prev.operation ? prev.operand1 : String(parseFloat(prev.value + value)),
-                operand2: prev.operation ? String(parseFloat(prev.operand2 + value)) : prev.operand2,
-                value: prev.value.length > limit ? prev.value : prev.operation ? String(parseFloat(prev.operand2 + value)) : String(parseFloat(prev.operand1 + value)),
-            }
-        });
+        setState((prev) => handleTyping(prev, value));
     }
 }

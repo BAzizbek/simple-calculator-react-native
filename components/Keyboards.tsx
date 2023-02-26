@@ -16,7 +16,7 @@ export const Keyboards: FC<Props> = ({ handeleState, operation }) => {
                     style={{
                         ...styles.button,
                         backgroundColor: button.value === operation ? button.textColor : button.backgroundColor,
-                        flexGrow: button.value === '0' ? 50 : 1,
+                        flexGrow: button.value === '0' ? 10 : 1,
                         alignItems: button.value === '0' ? 'flex-start' : 'center',
                         paddingLeft: button.value === '0' ? '8%' : '1%',
                     }}
@@ -36,7 +36,7 @@ export const Keyboards: FC<Props> = ({ handeleState, operation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: '80%',
+        // height: '65%',
         flexWrap: 'wrap',
         flexDirection: 'row',
     },
@@ -44,9 +44,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: '1%',
-        margin: '1%',
-        width: `23%`,
-        height: `18%`,
+        margin: '2%',
+        width: `19%`,
+        height: `15%`,
         borderRadius: 100,
     },
     text: {

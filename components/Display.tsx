@@ -21,7 +21,7 @@ export const Display: FC<Props> = ({ value }) => {
 
 const styles = StyleSheet.create({
     container: {
-        height: '20%',
+        height: '33%',
         width: '100%',
         backgroundColor: '#000',
     },

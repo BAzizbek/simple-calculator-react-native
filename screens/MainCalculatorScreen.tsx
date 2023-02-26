@@ -1,9 +1,8 @@
 import { FC, useCallback, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { Display } from '../components/Display';
 import { Keyboards } from '../components/Keyboards';
-import { View } from '../components/Themed';
 import { operate } from '../helpers/calculate'
 
 export const MainCalculatorScreen: FC = () => {
@@ -19,7 +18,6 @@ export const MainCalculatorScreen: FC = () => {
             operate(value, setState)
         }, [state.value],
     )
-    console.log(state);
     
     return (
         <View style={styles.container}>
@@ -31,23 +29,6 @@ export const MainCalculatorScreen: FC = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#000'
     },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    // separator: {
-    //     marginVertical: 30,
-    //     height: 1,
-    //     width: '80%',
-    // },
-
-    /* Other styles hidden to keep the example brief... */
-    // thumbnail: {
-    //     width: 300,
-    //     height: 300,
-    //     resizeMode: "contain"
-    // }
 });
